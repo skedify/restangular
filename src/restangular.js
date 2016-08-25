@@ -1074,10 +1074,11 @@ restangular.provider('Restangular', function() {
 
           // support empty response for getList() calls (some APIs respond with 204 and empty body)
           if (_.isUndefined(data) || '' === data) {
-            data = [];
-          }
-          if (!_.isArray(data)) {
-            throw new Error('Response for getList SHOULD be an array and not an object or something else');
+            data = {
+              data : [],
+              meta : [],
+              warnings : []
+            };
           }
           var processedData = _.map(data, function(elem) {
             if (!__this[config.restangularFields.restangularCollection]) {
