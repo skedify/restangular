@@ -1141,10 +1141,15 @@
 
             // support empty response for getList() calls (some APIs respond with 204 and empty body)
             if (_.isUndefined(data) || '' === data) {
-              data = [];
-            }
-            if (!_.isArray(data)) {
-              throw new Error('Response for getList SHOULD be an array and not an object or something else');
+            //   data = [];
+            // }
+            // if (!_.isArray(data)) {
+            //   throw new Error('Response for getList SHOULD be an array and not an object or something else');
+              data = {
+                data: [],
+                meta: {},
+                warnings: []
+              };
             }
 
             if (true === config.plainByDefault) {
