@@ -1,6 +1,6 @@
 /**
  * Restful Resources service for AngularJS apps
- * @version v1.6.1 - 2017-01-06 * @link https://github.com/mgonto/restangular
+ * @version v1.6.1 - 2017-04-24 * @link https://github.com/mgonto/restangular
  * @author Martin Gontovnikas <martin@gon.to>
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */(function(root, factory) {
@@ -1146,10 +1146,15 @@
 
             // support empty response for getList() calls (some APIs respond with 204 and empty body)
             if (_.isUndefined(data) || '' === data) {
-              data = [];
-            }
-            if (!_.isArray(data)) {
-              throw new Error('Response for getList SHOULD be an array and not an object or something else');
+            //   data = [];
+            // }
+            // if (!_.isArray(data)) {
+            //   throw new Error('Response for getList SHOULD be an array and not an object or something else');
+              data = {
+                data: [],
+                meta: {},
+                warnings: []
+              };
             }
 
             if (true === config.plainByDefault) {
